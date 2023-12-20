@@ -1,0 +1,2 @@
+eurostat=1.0.4
+geopy=2.4.1
