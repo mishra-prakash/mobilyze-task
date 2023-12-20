@@ -7,6 +7,6 @@ class Filter():
         return {   
             'geo': region_list,
             'startPeriod': start_time,
-            'end_period': end_time
+            'endPeriod': end_time
         }    
 

@@ -3,8 +3,9 @@ import pandas
 class Load():
     def __init__(self):
         pass
-
-    def to_csv(self,name, df):
+    
+    @staticmethod
+    def to_csv(df,name=None):
         try:
             df = df.to_csv(f"{name}.csv", index=False)
             print(f"{name}.csv created successfully!")

@@ -16,10 +16,10 @@ class Calculate():
         df = data[0]
 
         # Calculate relative increase in population
-        df['relative_change'] = (df['2021'] - df['2006']) / df['2006'] * 100
+        df['perc_relative_change'] = (df['2021'] - df['2006']) / df['2006'] * 100
 
         # Sort by relative increase in descending order
-        sorted_data = df.sort_values(by='relative_change', ascending=False)
+        sorted_data = df.sort_values(by='perc_relative_change', ascending=False)
 
         # Get the top 5 grid cells with the highest relative increase in population in Slovakia
         top_5_cells = sorted_data.head(5)
@@ -29,14 +29,20 @@ class Calculate():
         
         #Left joining top_5_cells dataframe with geo_locations dataframe to get Latitude and Longitude
         final_df = pd.merge(top_5_cells, geo_locations, on='geo\TIME_PERIOD', how='left')
-
-        return final_df
+        final_df.rename(columns={'2006': 'population_per_sq_km_2006', '2021': 'population_per_sq_km_2021','geo\TIME_PERIOD': 'geo_code'}, inplace=True)
+        final_df['perc_relative_change'] = final_df['perc_relative_change'].round(2).astype(str) + '%'
+        print(final_df)
+        return final_df[['geo_code','geo_name','latitude', 'longitude', 'population_per_sq_km_2006', 'population_per_sq_km_2021', 'perc_relative_change']]
     
+   
     @staticmethod
-    def second_task(df):
-        avg = df["2021"].mean()
-        median = df["2021"].median()
-        return pd.DataFrame([avg,median],columns=['Average population per 1 sq km', ' Median population per 1 sq km'])
+    def second_task(data):
+        df = data[0]
+
+        avg = df['2021'].mean()
+        median = df['2021'].median()
+
+        return pd.DataFrame([[avg,median]],columns=['Average population per 1 sq km', ' Median population per 1 sq km'])
 
 
 
