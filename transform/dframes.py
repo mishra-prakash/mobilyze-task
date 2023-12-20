@@ -7,23 +7,19 @@ class Calculate():
         pass
     
     @staticmethod
-    def first_task(data_2006, data_2021):
+    def first_task(data):
         
         # get Latitude and Longitude by passing region_code_list
-        geo_locations = Locations.getInfo(data_2006[2])
+        geo_locations = Locations.getInfo(data[2])
         
-        
-        region_name_mapping = data_2006[1]
-        df06 = data_2006[0]
-        df21 = data_2021[0]
-        # Merge data for 2006 and 2021 based on the 'geo\TIME_PERIOD' column
-        merged_data = pd.merge(df06, df21, on='geo\TIME_PERIOD')
+        region_name_mapping = data[1]
+        df = data[0]
 
         # Calculate relative increase in population
-        merged_data['relative_change'] = (merged_data['2021'] - merged_data['2006']) / merged_data['2006'] * 100
+        df['relative_change'] = (df['2021'] - df['2006']) / df['2006'] * 100
 
         # Sort by relative increase in descending order
-        sorted_data = merged_data.sort_values(by='relative_change', ascending=False)
+        sorted_data = df.sort_values(by='relative_change', ascending=False)
 
         # Get the top 5 grid cells with the highest relative increase in population in Slovakia
         top_5_cells = sorted_data.head(5)

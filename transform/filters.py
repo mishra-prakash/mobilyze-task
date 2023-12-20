@@ -3,10 +3,10 @@ class Filter():
         pass
     
     @staticmethod
-    def create(region_list,time):
+    def create(region_list,start_time, end_time):
         return {   
             'geo': region_list,
-            'startPeriod': time,
-            'end_period': time
+            'startPeriod': start_time,
+            'end_period': end_time
         }    
 
