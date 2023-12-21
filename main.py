@@ -7,16 +7,18 @@ def main():
     #### Initialising eurostat API
     estat = EurostatAPI()
 
+    # Fetch Dataset Code for Population density by NUTS 3 region.
+    code_list = estat.getDatasetCode("Population density by NUTS 3 region")
+    code = code_list['code'].iloc[0]
+    
     # Fetching all geo code and geo names mapping
-    all_regions = estat.geoCodeNameMapping()
-
+    all_regions = estat.geoCodeNameMapping(code)
 
     # Filtering the above data only for Slovakia regions
     all_slovakia_regions = Curate.regionList(all_regions, country="SK") 
 
-
     #### Extracting Population data per 1 square km grid in Slovakia from 2006 to 2021
-    data = estat.getData(all_slovakia_regions, start_time="2006", end_time="2021")
+    data = estat.getData(code, all_slovakia_regions, start_time="2006", end_time="2021")
 
     
     #-------------------Task 1----------------------#
