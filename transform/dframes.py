@@ -43,8 +43,8 @@ class Calculate():
     def second_task(data):
         df = data[0]
 
-        avg = df['2021'].mean()
-        median = df['2021'].median()
+        avg = df['2021'].mean().round(2)
+        median = df['2021'].median().round(2)
         
         final_df = pd.DataFrame([[avg,median]],columns=['Average population per 1 sq km', ' Median population per 1 sq km'])
         print("----------------- {This  is output of task 2} --------------------")
