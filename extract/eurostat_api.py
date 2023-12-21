@@ -11,7 +11,8 @@ class EurostatAPI():
         # "DEMO_R_D3DENS"
 
     def getDatasetCode(self, keyword):
-        code = eurostat.subset_toc_df(self.toc_df, keyword)
+        code_list = eurostat.subset_toc_df(self.toc_df, keyword)
+        code = code_list['code'].iloc[0]
         return code
     
     # Fetch geo code and names mapping   

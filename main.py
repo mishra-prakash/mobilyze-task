@@ -8,9 +8,8 @@ def main():
     estat = EurostatAPI()
 
     # Fetch Dataset Code for Population density by NUTS 3 region.
-    code_list = estat.getDatasetCode("Population density by NUTS 3 region")
-    code = code_list['code'].iloc[0]
-    
+    code = estat.getDatasetCode("Population density by NUTS 3 region")
+
     # Fetching all geo code and geo names mapping
     all_regions = estat.geoCodeNameMapping(code)
 
