@@ -31,8 +31,12 @@ class Calculate():
         final_df = pd.merge(top_5_cells, geo_locations, on='geo\TIME_PERIOD', how='left')
         final_df.rename(columns={'2006': 'population_per_sq_km_2006', '2021': 'population_per_sq_km_2021','geo\TIME_PERIOD': 'geo_code'}, inplace=True)
         final_df['perc_relative_change'] = final_df['perc_relative_change'].round(2).astype(str) + '%'
-        print(final_df)
-        return final_df[['geo_code','geo_name','latitude', 'longitude', 'population_per_sq_km_2006', 'population_per_sq_km_2021', 'perc_relative_change']]
+        
+        f_df = final_df[['geo_code','geo_name','latitude', 'longitude', 'population_per_sq_km_2006', 'population_per_sq_km_2021', 'perc_relative_change']]
+        print("----------------- {This  is output of task 1} --------------------")
+        print(f_df)
+        
+        return f_df
     
    
     @staticmethod
@@ -41,8 +45,12 @@ class Calculate():
 
         avg = df['2021'].mean()
         median = df['2021'].median()
-
-        return pd.DataFrame([[avg,median]],columns=['Average population per 1 sq km', ' Median population per 1 sq km'])
+        
+        final_df = pd.DataFrame([[avg,median]],columns=['Average population per 1 sq km', ' Median population per 1 sq km'])
+        print("----------------- {This  is output of task 2} --------------------")
+        print(final_df)
+        
+        return final_df
 
 
 

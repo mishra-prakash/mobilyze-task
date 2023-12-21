@@ -30,4 +30,7 @@ def main():
     task_2 = Calculate.second_task(data)
     Load.to_csv(task_2, name="second_assignment")
 
-main()
+
+
+if __name__ == "__main__":
+    main()
